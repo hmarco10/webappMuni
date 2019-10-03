@@ -11,3 +11,15 @@ class StudentForm(forms.ModelForm):
 			'last_name':forms.TextInput(attrs={'class':'form-control'}),
 			'subject_student':forms.SelectMultiple(attrs={'class':'form-control'}),
 		}
+
+
+class MascotaForm(forms.ModelForm):
+	class Meta:
+		model = Student
+		fields = '__all__'
+		
+		widgets = {
+			'name':forms.TextInput(attrs={'class':'form-control'}),
+			'last_name':forms.TextInput(attrs={'class':'form-control'}),
+			'subject_student':forms.SelectMultiple(attrs={'class':'form-control'}),
+		}

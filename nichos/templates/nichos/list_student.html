@@ -132,16 +132,20 @@
                   <br>
                   <div>
 
-                    <table class="table">
+                    <table class="table table-bordered">
                       <thead>
                         <th>Nombre</th>
                         <th>APellido</th>
+                        <th>Acciones</th>  
                       </thead>
                       <tbody>
                         <tr>
                             {% for stu in student %}
                             <td>{{ stu.name }}</td>
-                            <td>  {{ stu.last_name }}</td>                              
+                            <td>  {{ stu.last_name }}</td> 
+                            <td><a class="btn btn-primary" href="{% url 'nichos:mascota_editar' mascota.id %}">
+                    
+                            </a>Editar</td>                          
                           
                         </tr>
                         {% endfor %}

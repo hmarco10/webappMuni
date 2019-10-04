@@ -1,75 +1,80 @@
-from django.shortcuts import render, redirect
-
-#vistas genericas para el crud
-
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
-
-from .models import owner, Student, Subject
-
-from django.urls import reverse
-#from django.contrib import messages
-#from django.contrib.messages.views import SuccessMessage
-from django import forms 
-
-from .forms import StudentForm, MascotaForm
-# Create your views here.
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, reverse
+from user.models import User
+from nichos.models import Student
 
 
-def index(request):
+def index(request, user_pk):
     template = 'nichos/index.html'
-    return render(request, template)
+    context = {
+        'user': User.objects.get(pk=user_pk),
+    }
+    return render(request, template, context)
 
 
-def about(request):
+def about(request, user_pk):
     template = 'nichos/about.html'
-    return render(request, template)
+    context = {
+        'user': User.objects.get(pk=user_pk),
+    }
+    return render(request, template, context)
 
 
-def typography(request):
-    template = 'nichos/typography.html'
-    return render(request, template)
-
-
-def contact(request):
+def contact(request, user_pk):
     template = 'nichos/contacts.html'
-    return render(request, template)
+    context = {
+        'user': User.objects.get(pk=user_pk),
+    }
+    return render(request, template, context)
 
 
-# CRUD
+def students(request, user_pk):
+    template = 'nichos/students.html'
+    context = {
+        'students': Student.objects.all(),
+        'user': User.objects.get(pk=user_pk)
+    }
+    return render(request, template, context)
 
-def list_student (request):
-	student = Student.objects.all()
-	return render (request, template_name= 'nichos/list_student.html', context = {'student':student})
-	#return render (request, template_name= 'nichos/typography.html', context = {'student':student})
 
-class StudentCreate(CreateView):
-	model = Student
-	form_class = StudentForm
-	template_name = 'nichos/about.html'
-	# template_name = 'nichos/typography.html'
+def create_student(request, user_pk):
+    if request.method == 'POST':
+        new_student = Student(
+            name=request.POST['name'],
+            last_name=request.POST['last_name'],
+        )
+        new_student.save()
+        return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
+    elif request.method == 'GET':
+        template = 'nichos/about.html'
+        context = {
+            'user': User.objects.get(pk=user_pk),
+        }
+        return render(request, template, context)
+    return HttpResponse('No se puede guardar')
 
-	#def get_success_url(self):
-	#	return reverse('nichos:list_student')
 
-def mascota_view(request):
-	if request.method == 'POST':
-		form = MascotaForm(request.POST)
-		if form.is_valid():
-			form.save()
-		return redirect('nichos:list_student')
-	else:
-		form = MascotaForm()
-	
-	return render(request,'nichos/about.html',{'form':form})
+def edit_student(request, user_pk, student_pk):
+    if request.method == 'POST':
+        updated_student = Student.objects.get(pk=student_pk)
+        updated_student.name = request.POST['name']
+        updated_student.last_name = request.POST['last_name']
+        updated_student.save()
 
-def mascota_edit(request, id_mascota):
-	mascota = Student.objects.get(id=id_mascota)
-	if request.method == 'GET':
-		form = MascotaForm(instance=mascota)
-	else: 
-		form = MascotaForm(request.POST, instance=mascota)
-		if form.is_valid():
-			form.save()
-		return redirect('nichos:list_student')
-	return render(request,'nichos/about.html',{'form':form,'mascota': Student.objects.get(id=id_mascota)})
+        return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
+
+    elif request.method == 'GET':
+        template = 'nichos/edit.html'
+        context = {
+            'student': Student.objects.get(pk=student_pk),
+            'user': User.objects.get(pk=user_pk),
+        }
+
+        return render(request, template, context)
+    return HttpResponse('Error, Method not allowed')
+
+
+def delete_student(request, user_pk, student_pk):
+    deleted_student = Student.objects.get(pk=student_pk)
+    deleted_student.delete()
+    return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
+

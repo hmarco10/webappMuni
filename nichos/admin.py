@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import owner,Subject, Student
+from .models import owner, Subject, Student, Registration
 
 
 # Register your models here.
@@ -7,3 +7,4 @@ from .models import owner,Subject, Student
 admin.site.register(owner)
 admin.site.register(Subject)
 admin.site.register(Student)
+admin.site.register(Registration)

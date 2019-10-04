@@ -1,16 +1,15 @@
 from django.urls import path
 from nichos import views
-from .views import mascota_view, mascota_edit
 
 
 app_name = 'nichos'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('about/', views.about, name='about'),
-    #path('typography/', views.typography, name='typography'),
-    #path('typography/', views.StudentCreate.as_view() , name='create_student'),
-    path('list_student/', views.list_student, name = 'list_student'),
-    path('create_student/', mascota_view, name='mascota_crear'),
-    path('editar/<int:id_mascota>/', mascota_edit, name='mascota_editar'),
-    path('contact-us/', views.contact, name='contact-us'),
+    path('index/<int:user_pk>/', views.index, name='index'),
+    path('about/<int:user_pk>/', views.about, name='about'),
+    path('contacts/<int:user_pk>/', views.contact, name='contacts'),
+    path('create_student/<int:user_pk>/', views.create_student, name='create_student'),
+    path('students/<int:user_pk>/', views.students, name='students'),
+    path('edit_student/<int:user_pk>/<int:student_pk>/', views.edit_student, name='edit_student'),
+    path('delete_student/<int:user_pk>/<int:student_pk>/', views.delete_student, name='delete_student'),
+
 ]

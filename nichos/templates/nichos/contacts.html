@@ -61,13 +61,13 @@
                 <div class="rd-navbar-main-element">
                   <div class="rd-navbar-nav-wrap">
                     <ul class="rd-navbar-nav">
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:index' %}">Home</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:index' user.pk %}">Home</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:about' %}">About</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:about' user.pk %}">About</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:list_student' %}">Typography</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="">Typography</a>
                       </li>
-                      <li class="rd-nav-item active"><a class="rd-nav-link" href="{% url 'nichos:contact-us' %}">Contacts</a>
+                      <li class="rd-nav-item active"><a class="rd-nav-link" href="{% url 'nichos:contacts' user.pk %}">Contacts</a>
                       </li>
                     </ul>
                   </div>

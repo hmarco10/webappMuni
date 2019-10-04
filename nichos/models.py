@@ -22,7 +22,18 @@ class Subject (models.Model):
 class Student(models.Model):
     name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
-    subject_student = models.ManyToManyField(Subject)
 
     def __str__(self):
         return self.name
+
+
+class Registration(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    schedule_time = models.TimeField()
+
+    def __str__(self):
+        return self.student.name + self.subject.name
+
+
+    

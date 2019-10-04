@@ -102,25 +102,19 @@
               <div class="wrapper">
                   <div class="inner">
                       <section>
-                          <h3 class="major">Nuevo Estudiante</h3>
+                          
                           <form method="POST" action="{% url 'nichos:edit_student' user.pk student.pk %}">
                               {% csrf_token %}
                               <div class="row gtr-uniform">
                               </div>
                               <div class="row gtr-uniform">
-                                  <div class="col-z6 col-12-xsmall">
-                                      <label for="name">Nombre</label>
-                                      <input type="text" name="name" id="name" value="{{ student.name }}" required/>
-                                  </div>
-                                  <div class="col-6 col-12-xsmall">
-                                              <label for="">Apellido</label>
-                                      <input type="text" name="last_name" id="last_name" value="{{ student.last_name }}" required/>
-                                  </div>
-                                  <div class="col-12">
-                                      <ul class="actions">
-                                          <li> <button type="submit" class="btn btn-outline-secondary btn-sm">Editar</button></li>
-                                      </ul>
-                                  </div>
+                                  <label for="name">Nombre</label>
+                                  <input class="form-control" type="text" name="name" id="name" value="{{ student.name }}" required/>                               
+                                  <label for="latitude">Apellido</label>
+                                  <input class="form-control" type="text" name="last_name" id="last_name" value="{{ student.last_name }}" required/>                            
+                                  <button type="submit" class="btn btn-primary">Editar</button>
+                                      
+                              </div>
                               </div>
                           </form>
                       </section>

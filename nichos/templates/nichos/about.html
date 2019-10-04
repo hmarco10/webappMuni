@@ -64,7 +64,7 @@
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:about' user.pk %}">Acerca de</a>
                   </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="">Registrar</a>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href=" {% url 'nichos:students' user.pk %} ">Registrar</a>
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:contacts' user.pk %}">Contactos</a>
                   </li>
@@ -102,25 +102,17 @@
               <div class="wrapper">
                   <div class="inner">
                       <section>
-                          <h3 class="major">Nuevo Estudiante</h3>
+                          
                           <form method="POST" action="{% url 'nichos:create_student' user.pk %}">
                               {% csrf_token %}
                               <div class="row gtr-uniform">
                               </div>
                               <div class="row gtr-uniform">
-                                  <div class="col-z6 col-12-xsmall">
-                                      <label for="name">Nombre</label>
-                                      <input type="text" name="name" id="name" value="" required/>
-                                  </div>
-                                  <div class="col-6 col-12-xsmall">
-                                              <label for="latitude">Apellido</label>
-                                      <input type="text" name="last_name" id="last_name" value="" required/>
-                                  </div>         
-                                  <div class="col-12">
-                                      <ul class="actions">
-                                          <li> <button type="submit" class="btn btn-outline-secondary btn-sm">Agregar</button></li>
-                                      </ul>
-                                  </div>
+                                  <label for="name">Nombre</label>
+                                  <input class="form-control" type="text" name="name" id="name" value="" required/> 
+                                  <label for="latitude">Apellido</label>
+                                  <input  class="form-control" type="text" name="last_name" id="last_name" value="" required/>                                 
+                                  <div><button class="btn btn-primary" type="submit" >Agregar</button> </div>
                               </div>
                           </form>
                       </section>

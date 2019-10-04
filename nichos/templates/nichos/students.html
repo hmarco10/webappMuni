@@ -145,8 +145,49 @@
                             <td>{{ stu.name }}</td>
                             <td>  {{ stu.last_name }}</td> 
                             <td>
-                            <a href="{% url 'nichos:edit_student' user.pk stu.pk %}" class="button small">editar</a>
-                            <a href="{% url 'nichos:delete_student' user.pk stu.pk %}" class="button small">Elminar</a>
+                            <a class="btn btn-danger" href="{% url 'nichos:edit_student' user.pk stu.pk %}" >editar</a>
+                            <a  class="btn btn-danger" href="{% url 'nichos:delete_student' user.pk stu.pk %}">Elminar</a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+
+                    
+                  </div> <br>
+                  <div>
+
+                    <table class="table table-bordered">
+                      <thead>
+                        
+                        <th>Titular</th>
+                        <th>Nomenclatura Predio</th>
+                        <th>Propietario</th>  
+                        <th>Espacios</th>  
+                        <th>Niveles</th>  
+                        <th>Ornato</th>  
+                        <th>Cancelado</th>  
+                        <th>Inspeccion ocular</th>  
+                        <th>Fecha</th>  
+                        
+                      
+                      </thead>
+                      <tbody>
+                        <tr>
+                            {% for stu2 in reservaciones %}
+                            <td>{{ stu.titular }}</td>
+                            <td>  {{ stu.nomenclatura }}</td> 
+                            <td>  {{ stu.propietario }}</td> 
+                            <td>  {{ stu.espacios }}</td> 
+                            <td>  {{ stu.niveles }}</td> 
+                            <td>  {{ stu.ornato }}</td> 
+                            <td>  {{ stu.cancelado }}</td> 
+                            <td>  {{ stu.inspeccion }}</td> 
+                            <td>  {{ stu.fecha }}</td> 
+                            <a class="btn btn-danger" href="{% url 'nichos:edit_student' user.pk stu.pk %}" >editar</a>
+                            <a  class="btn btn-danger" href="{% url 'nichos:delete_student' user.pk stu.pk %}">Elminar</a>
                             </td>
 
                         </tr>

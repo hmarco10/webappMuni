@@ -1,15 +1,19 @@
 from django.contrib import admin
-from .models import owner, Subject, Student, Registration, Propietario, Predio, reservacion
+from .models import Propietario, Predio, Reservation
 
 
 # Register your models here.
+min.register(Propietario)
+class PropietarioAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'dpi', 'telefono', 'direccion')
 
-admin.site.register(owner)
-admin.site.register(Subject)
-admin.site.register(Student)
-admin.site.register(Registration)
-admin.site.register(Propietario)
-admin.site.register(Predio)
-admin.site.register(reservacion)
 
+@admin.register(Predio)
+class PredioAdmin(admin.ModelAdmin):
+    list_display = ('largo', 'ancho', 'nomenclatura')
+
+
+@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ('titular', 'espacios', 'niveles', 'ornato', 'cancelado', 'inspeccion', 'fecha', 'propietario', 'predio')
 

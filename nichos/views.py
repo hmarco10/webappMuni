@@ -36,14 +36,6 @@ def contact1(request):
     return render(request, template)
 
 
-def show_reservation(request, user_pk):
-    template = 'nichos/students.html'
-    context = {
-        'reservaciones': Propietario.objects.all(),
-        'user': User.objects.get(pk=user_pk)
-    } 
-    return render(request, template, context)
-
 def crear_reservacion(request, user_pk):
     if request.method == 'POST':
         post_predio = Predio.objects.get(pk=request.POST['predio'])
@@ -70,3 +62,11 @@ def crear_reservacion(request, user_pk):
         }
         return render(request, template, context)
     return HttpResponse('No se puede guardar')
+
+
+def show_reservation(request, user_pk):
+    template = 'nichos/show_reservations.html'
+    context = {
+        'reservations': Reservation.objects.all(),
+    }
+    return render(request, template, context)

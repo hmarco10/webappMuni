@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 
@@ -65,8 +66,7 @@ class reservacion(models.Model):
     predio = models.ForeignKey(Predio, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.titular
-
+        return 'Titular: '+ self.titular + 'Espacios: '+ str(self.espacios)
 
 
 

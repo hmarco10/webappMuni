@@ -117,6 +117,38 @@
                           </form>
                       </section>
                   </div>
+
+                  <div class="inner">
+                      <section>
+                          
+                          <form method="POST" action="{% url 'nichos:crear_reservacion' user.pk %}">
+                              {% csrf_token %}
+                              <div class="row gtr-uniform">
+                              </div>
+                              <div class="row gtr-uniform">
+                                  <label for="name">Titular</label>
+                                  <input class="form-control" type="text" name="titular" id="name" value="" required/> 
+                                  <label for="latitude">Nomenclatura</label>
+                                  <input  class="form-control" type="text" name="predio" id="last_name" value="" required/>                                 
+                                  <label for="name">propietario</label>
+                                  <input class="form-control" type="text" name="propietario" id="name" value="" required/> 
+                                  <label for="name">Espacios</label>
+                                  <input class="form-control" type="text" name="espacios" id="name" value="" required/> 
+                                  <label for="name">Niveles</label>
+                                  <input class="form-control" type="text" name="niveles" id="name" value="" required/> 
+                                  <label for="name">Ornato</label>
+                                  <input class="form-control" type="text" name="ornato" id="name" value="" required/> 
+                                  <label for="name">Cancelado</label>
+                                  <input class="form-control" type="text" name="cancelado" id="name" value="" required/> 
+                                  <label for="name">Inspeccion</label>
+                                  <input class="form-control" type="text" name="inspeccion" id="name" value="" required/> 
+                                  <label for="name">Fecha</label>
+                                  <input class="form-control" type="text" name="fecha" id="name" value="" required/> 
+                                  <div><button class="btn btn-primary" type="submit" >Agregar</button> </div>
+                              </div>
+                          </form>
+                      </section>
+                  </div>
               </div>
           </section>                       
                     

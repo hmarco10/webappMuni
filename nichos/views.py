@@ -78,12 +78,21 @@ def delete_student(request, user_pk, student_pk):
     deleted_student.delete()
     return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
 
-def reservaciones(request, user_pk):
+"""def reservaciones(request, user_pk):
     template = 'nichos/students.html'
     context = {
         'reservacion': reservacion.objects.all(),
         'user': User.objects.get(pk=user_pk)
     }
+    return render(request, template, context)"""
+
+
+def show_reservation(request, user_pk):
+    template = 'nichos/students.html'
+    context = {
+        'reservaciones': Propietario.objects.all(),
+        'user': User.objects.get(pk=user_pk)
+    } 
     return render(request, template, context)
 
 

@@ -11,3 +11,5 @@ admin.site.register(Registration)
 admin.site.register(Propietario)
 admin.site.register(Predio)
 admin.site.register(reservacion)
+
+

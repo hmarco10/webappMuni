@@ -163,13 +163,13 @@
                       <thead>
                         
                         <th>Titular</th>
-                        <th>Nomenclatura Predio</th>
+                        <th>Nomenclatura</th>
                         <th>Propietario</th>  
                         <th>Espacios</th>  
                         <th>Niveles</th>  
                         <th>Ornato</th>  
                         <th>Cancelado</th>  
-                        <th>Inspeccion ocular</th>  
+                        <th>Inspeccion</th>  
                         <th>Fecha</th>  
                         
                       
@@ -177,18 +177,12 @@
                       <tbody>
                         <tr>
                             {% for stu2 in reservaciones %}
-                            <td>{{ stu.titular }}</td>
-                            <td>  {{ stu.nomenclatura }}</td> 
-                            <td>  {{ stu.propietario }}</td> 
-                            <td>  {{ stu.espacios }}</td> 
-                            <td>  {{ stu.niveles }}</td> 
-                            <td>  {{ stu.ornato }}</td> 
-                            <td>  {{ stu.cancelado }}</td> 
-                            <td>  {{ stu.inspeccion }}</td> 
-                            <td>  {{ stu.fecha }}</td> 
-                            <a class="btn btn-danger" href="{% url 'nichos:edit_student' user.pk stu.pk %}" >editar</a>
-                            <a  class="btn btn-danger" href="{% url 'nichos:delete_student' user.pk stu.pk %}">Elminar</a>
-                            </td>
+                            <td>{{ stu2.nombre }}</td>
+                            <td>  {{ stu2.dpi }}</td> 
+                            <td>  {{ stu2.telefono }}</td> 
+                            <td>  {{ stu2.direccion }}</td> 
+                           
+                            
 
                         </tr>
                         {% endfor %}

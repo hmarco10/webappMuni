@@ -27,7 +27,7 @@ class Reservation(models.Model):
     ornato = models.BooleanField()
     cancelado = models.BooleanField()
     inspeccion = models.BooleanField()
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateField()
     propietario = models.ForeignKey(Propietario, on_delete=models.CASCADE)
     predio = models.ForeignKey(Predio, on_delete=models.CASCADE)
 

@@ -64,7 +64,6 @@
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:about' user.pk %}">Acerca de</a>
                   </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href=" {% url 'nichos:students' user.pk %} ">Registrar</a>
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'nichos:contacts' user.pk %}">Contactos</a>
                   </li>
@@ -100,24 +99,7 @@
             
             <section id="wrapper">
               <div class="wrapper">
-                  <div class="inner">
-                      <section>
-                          
-                          <form method="POST" action="{% url 'nichos:create_student' user.pk %}">
-                              {% csrf_token %}
-                              <div class="row gtr-uniform">
-                              </div>
-                              <div class="row gtr-uniform">
-                                  <label for="name">Nombre</label>
-                                  <input class="form-control" type="text" name="name" id="name" value="" required/> 
-                                  <label for="latitude">Apellido</label>
-                                  <input  class="form-control" type="text" name="last_name" id="last_name" value="" required/>                                 
-                                  <div><button class="btn btn-primary" type="submit" >Agregar</button> </div>
-                              </div>
-                          </form>
-                      </section>
-                  </div>
-
+               
                   <div class="inner">
                       <section>
                           
@@ -128,22 +110,30 @@
                               <div class="row gtr-uniform">
                                   <label for="name">Titular</label>
                                   <input class="form-control" type="text" name="titular" id="name" value="" required/> 
-                                  <label for="latitude">Nomenclatura</label>
-                                  <input  class="form-control" type="text" name="predio" id="last_name" value="" required/>                                 
-                                  <label for="name">propietario</label>
-                                  <input class="form-control" type="text" name="propietario" id="name" value="" required/> 
-                                  <label for="name">Espacios</label>
-                                  <input class="form-control" type="text" name="espacios" id="name" value="" required/> 
+                                  <label for="latitude">Espacios</label>
+                                  <input  class="form-control" type="text" name="espacios" id="last_name" value="" required/>                                 
                                   <label for="name">Niveles</label>
                                   <input class="form-control" type="text" name="niveles" id="name" value="" required/> 
-                                  <label for="name">Ornato</label>
-                                  <input class="form-control" type="text" name="ornato" id="name" value="" required/> 
-                                  <label for="name">Cancelado</label>
-                                  <input class="form-control" type="text" name="cancelado" id="name" value="" required/> 
+                                  <label for="name">ornato</label>
+                                  <input class="form-control" type="checkbox" name="ornato" id="name" value="True" required/> 
+                                  <label for="name">canceladp</label>
+                                  <input class="form-control" type="checkbox" name="cancelado" id="name" value="True" required/> 
                                   <label for="name">Inspeccion</label>
-                                  <input class="form-control" type="text" name="inspeccion" id="name" value="" required/> 
+                                  <input class="form-control" type="checkbox" name="inspeccion" id="name" value="True" required/> 
                                   <label for="name">Fecha</label>
-                                  <input class="form-control" type="text" name="fecha" id="name" value="" required/> 
+                                  <input class="form-control" type="date" name="fecha" id="name" value="" required/> 
+                                  <label for="name">Predio</label>
+                                  <select name="predio" id=""  class="form-control">
+                                    {% for predio in predios %}
+                                    <option value="{{ predio.id }}">{{ predio }}</option>
+                                    {% endfor %}
+                                  </select>
+                                  <label for="name">Propietario</label>
+                                  <select name="propietario" id=""  class="form-control">
+                                    {% for propietario in propietarios %}
+                                    <option value="{{ propietario.id }}">{{ propietario }}</option>
+                                    {% endfor %}
+                                  </select>
                                   <div><button class="btn btn-primary" type="submit" >Agregar</button> </div>
                               </div>
                           </form>

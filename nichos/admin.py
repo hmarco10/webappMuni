@@ -3,7 +3,7 @@ from .models import Propietario, Predio, Reservation
 
 
 # Register your models here.
-min.register(Propietario)
+@admin.register(Propietario)
 class PropietarioAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'dpi', 'telefono', 'direccion')
 

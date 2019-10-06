@@ -1,7 +1,11 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, reverse
 from user.models import User
-from nichos.models import Student, reservacion, Predio, Propietario
+from nichos.models import Reservation, Predio, Propietario
 
+
+def landing_page(request):
+    template = 'nichos/landing_page.html'
+    return render(request, template)
 
 def index(request, user_pk):
     template = 'nichos/index.html'
@@ -27,64 +31,9 @@ def contact(request, user_pk):
     return render(request, template, context)
 
 
-def students(request, user_pk):
-    template = 'nichos/students.html'
-    context = {
-        'students': Student.objects.all(),
-        'user': User.objects.get(pk=user_pk)
-    }
-    return render(request, template, context)
-
-
-def create_student(request, user_pk):
-    if request.method == 'POST':
-        new_student = Student(
-            name=request.POST['name'],
-            last_name=request.POST['last_name'],
-        )
-        new_student.save()
-        return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
-    elif request.method == 'GET':
-        template = 'nichos/about.html'
-        context = {
-            'user': User.objects.get(pk=user_pk),
-        }
-        return render(request, template, context)
-    return HttpResponse('No se puede guardar')
-
-
-def edit_student(request, user_pk, student_pk):
-    if request.method == 'POST':
-        updated_student = Student.objects.get(pk=student_pk)
-        updated_student.name = request.POST['name']
-        updated_student.last_name = request.POST['last_name']
-        updated_student.save()
-
-        return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
-
-    elif request.method == 'GET':
-        template = 'nichos/edit.html'
-        context = {
-            'student': Student.objects.get(pk=student_pk),
-            'user': User.objects.get(pk=user_pk),
-        }
-
-        return render(request, template, context)
-    return HttpResponse('Error, Method not allowed')
-
-
-def delete_student(request, user_pk, student_pk):
-    deleted_student = Student.objects.get(pk=student_pk)
-    deleted_student.delete()
-    return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
-
-"""def reservaciones(request, user_pk):
-    template = 'nichos/students.html'
-    context = {
-        'reservacion': reservacion.objects.all(),
-        'user': User.objects.get(pk=user_pk)
-    }
-    return render(request, template, context)"""
+def contact1(request):
+    template = 'nichos/contact1.html'
+    return render(request, template)
 
 
 def show_reservation(request, user_pk):
@@ -95,26 +44,29 @@ def show_reservation(request, user_pk):
     } 
     return render(request, template, context)
 
-
 def crear_reservacion(request, user_pk):
     if request.method == 'POST':
-        nueva_reservacion = reservacion(
+        post_predio = Predio.objects.get(pk=request.POST['predio'])
+        post_propietario = Propietario.objects.get(pk=request.POST['propietario'])
+        nueva_reservacion = Reservation(
             titular=request.POST['titular'],
-            predio=request.POST['predio'],
-            propietario=request.POST['propietario'],
             espacios=request.POST['espacios'],
             niveles=request.POST['niveles'],
             ornato=request.POST['ornato'],
             cancelado=request.POST['cancelado'],
             inspeccion=request.POST['inspeccion'],
             fecha=request.POST['fecha'],
+            predio = post_predio,
+            propietario= post_propietario,
         )
         nueva_reservacion.save()
-        return HttpResponseRedirect(reverse('nichos:students', kwargs={'user_pk': user_pk}))
+        return HttpResponseRedirect(reverse('nichos:index', kwargs={'user_pk': user_pk}))
     elif request.method == 'GET':
         template = 'nichos/about.html'
         context = {
             'user': User.objects.get(pk=user_pk),
+            'predios': Predio.objects.all(),
+            'propietarios': Propietario.objects.all(),
         }
         return render(request, template, context)
     return HttpResponse('No se puede guardar')
